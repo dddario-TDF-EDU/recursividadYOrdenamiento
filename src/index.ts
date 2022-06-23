@@ -7,6 +7,9 @@ botonaso.addEventListener("click", () => {
     case 1:
       location.href = "../ejerciciosProg/fibonacci.html";
       break;
+    case 2:
+      location.href = "../ejerciciosProg/invertirArrayRecursivo.html";
+      break;
 
     default:
       console.log("que onda we no carga");
