@@ -10,6 +10,9 @@ botonaso.addEventListener("click", () => {
     case 2:
       location.href = "../ejerciciosProg/invertirArrayRecursivo.html";
       break;
+    case 3:
+      location.href = "../ejerciciosProg/ordenamientoBurbuja.html";
+      break;
 
     default:
       console.log("que onda we no carga");
