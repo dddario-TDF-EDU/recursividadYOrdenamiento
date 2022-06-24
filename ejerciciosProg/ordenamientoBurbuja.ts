@@ -10,6 +10,11 @@ function esNum(numero: number): boolean {
   }
 }
 
+function numRandom(): number {
+  let aux: number = Math.floor(Math.random() * (20 - 10) + 10);
+  return aux;
+}
+
 function crearArray(array: number[]) {
   let tamanio: number = Number(prompt("ingrese el tamaño del array"));
   for (let index: number = 0; index < tamanio; index++) {
@@ -18,32 +23,32 @@ function crearArray(array: number[]) {
 }
 
 function cargarArray(array: number[]) {
-  let aux: number;
+  // let aux: number;
   for (let index: number = 0; index < array.length; index++) {
-    aux = Number(prompt("ingrese el numero"));
-    while (esNum(aux) === false) {
-      alert("no es un numero");
-      aux = Number(prompt("ingrese el numero"));
-    }
-    array[index] = aux;
+    //   aux = Number(prompt("ingrese el numero"));
+    //   while (esNum(aux) === false) {
+    //     alert("no es un numero");
+    //     aux = Number(prompt("ingrese el numero"));
+    //   }
+    array[index] = numRandom();
   }
 }
 
 function ordenarArray(array: number[]) {
   let aux: number;
-  let index: number = 0;
-  while (index < array.length) {
-    if (array[index] > array[index + 1]) {
-      aux = array[index];
-      array[index] = array[index + 1];
-      array[index + 1] = aux;
+  for (let i: number = 0; i < array.length; i++) {
+    for (let index: number = 0; index < array.length - i; index++) {
+      if (array[index] > array[index + 1]) {
+        aux = array[index];
+        array[index] = array[index + 1];
+        array[index + 1] = aux;
+      }
     }
-    index++;
   }
 }
 
 botonBurbuja?.addEventListener("click", () => {
-  let arrayDesorden: number[];
+  let arrayDesorden: number[] = new Array();
   crearArray(arrayDesorden);
   cargarArray(arrayDesorden);
   console.log("array de salida " + arrayDesorden);

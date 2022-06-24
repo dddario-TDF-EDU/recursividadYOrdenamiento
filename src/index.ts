@@ -13,6 +13,9 @@ botonaso.addEventListener("click", () => {
     case 3:
       location.href = "../ejerciciosProg/ordenamientoBurbuja.html";
       break;
+    case 4:
+      location.href = "../ejerciciosProg/ordenarPorDosCriterios.html";
+      break;
 
     default:
       console.log("que onda we no carga");
