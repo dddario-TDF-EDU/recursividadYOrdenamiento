@@ -109,22 +109,16 @@ function ordenarPorEdad(
   for (let i: number = 1; i < tamanho; i++) {
     for (let index: number = 0; index < tamanho - i; index++) {
       hayIntercambio = false;
-      if (
-        arrayEdad[index] > arrayEdad[index + 1] ||
-        arrayEdad[index] === arrayEdad[index + 1]
-      ) {
-        if (arrayEdad[index] > arrayEdad[index + 1]) {
-          intercambioNumeros(arrayEdad, index);
-          console.log("se intercambio " + arrayEdad[index]);
+      if (arrayEdad[index] > arrayEdad[index + 1]) {
+        console.log("se intercambio " + arrayEdad[index]);
+        hayIntercambio = true;
+      } else if (arrayEdad[index] === arrayEdad[index + 1]) {
+        if (arrayAltura[index] > arrayAltura[index + 1]) {
           hayIntercambio = true;
-        } else {
-          if (arrayAltura[index] > arrayAltura[index + 1]) {
-            intercambioNumeros(arrayEdad, index);
-            hayIntercambio = true;
-          }
         }
       }
       if (hayIntercambio === true) {
+        intercambioNumeros(arrayEdad, index);
         intercambioNumeros(arrayAltura, index);
         intercambioNombres(arrayNombres, index);
       }
@@ -132,10 +126,11 @@ function ordenarPorEdad(
   }
 }
 
-let listaNombres: string[] = new Array();
-let listaEdades: number[] = new Array();
-let listaAlturas: number[] = new Array();
+let listaNombres: string[];
+let listaEdades: number[];
+let listaAlturas: number[];
 let tamanhoArray: number;
+
 tripleIngreso.addEventListener("click", () => {
   tamanhoArray = Number(prompt("ingrese el tamaño del array"));
 
