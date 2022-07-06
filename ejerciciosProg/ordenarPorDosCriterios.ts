@@ -30,8 +30,8 @@ function alturaRandom(): number {
 }
 
 function cargarNombres(nombre: string[], posicion: number) {
-  nombre[posicion] = prompt(
-    "Por favor ingrese el nombre del cliente n°" + (posicion + 1)
+  nombre[posicion] = String(
+    prompt("Por favor ingrese el nombre del cliente n°" + (posicion + 1))
   );
 }
 
@@ -85,42 +85,50 @@ function cargaArrays(
   }
 }
 
-function intercambioNumeros(array: number[], index) {
+function comparador(arrayEdad: number[], arrayAltura: number[], i: number) {
+  let comparacion: number = 0;
+
+  if (arrayEdad[i] > arrayEdad[i + 1]) {
+    comparacion = 1;
+  } else if (arrayEdad[i] === arrayEdad[i + 1]) {
+    if (arrayAltura[i] > arrayAltura[i + 1]) {
+      comparacion = 1;
+    } else if (arrayAltura[i] < arrayAltura[i + 1]) {
+      comparacion = -1;
+    }
+  } else {
+    comparacion = -1;
+  }
+
+  return comparacion;
+}
+
+function intercambioNumeros(array: number[], index: number) {
   let aux: number;
   aux = array[index];
   array[index] = array[index + 1];
   array[index + 1] = aux;
 }
 
-function intercambioNombres(array: string[], index) {
+function intercambioNombres(array: string[], index: number) {
   let aux: string;
   aux = array[index];
   array[index] = array[index + 1];
   array[index + 1] = aux;
 }
 
-function ordenarPorEdad(
+function ordenar(
   arrayNombres: string[],
   arrayEdad: number[],
   arrayAltura: number[],
   tamanho: number
 ) {
-  let hayIntercambio: boolean;
   for (let i: number = 1; i < tamanho; i++) {
     for (let index: number = 0; index < tamanho - i; index++) {
-      hayIntercambio = false;
-      if (arrayEdad[index] > arrayEdad[index + 1]) {
-        console.log("se intercambio " + arrayEdad[index]);
-        hayIntercambio = true;
-      } else if (arrayEdad[index] === arrayEdad[index + 1]) {
-        if (arrayAltura[index] > arrayAltura[index + 1]) {
-          hayIntercambio = true;
-        }
-      }
-      if (hayIntercambio === true) {
+      if (comparador(arrayEdad, arrayAltura, index) === 1) {
         intercambioNumeros(arrayEdad, index);
-        intercambioNumeros(arrayAltura, index);
         intercambioNombres(arrayNombres, index);
+        intercambioNumeros(arrayAltura, index);
       }
     }
   }
@@ -151,7 +159,7 @@ tripleIngreso.addEventListener("click", () => {
 });
 
 botonOrdenar.addEventListener("click", () => {
-  ordenarPorEdad(listaNombres, listaEdades, listaAlturas, tamanhoArray);
+  ordenar(listaNombres, listaEdades, listaAlturas, tamanhoArray);
   console.log("Lista de nombres ordenada:");
   console.log(listaNombres);
   console.log("Lista de edades ordenada:");
